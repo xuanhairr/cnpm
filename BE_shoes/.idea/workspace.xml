@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f14a3990-35ca-43c9-9905-285c9a8bff6b" name="Changes" comment="init prj">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/eslint.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/postcss.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/public/vite.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/App.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/ModalConfirm.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/ModalEdit.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/ModalEdit1.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/ModalEdit2.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/ModalSua.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/ModalThemMoi.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/TimKiem.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/banhangtaiquay/BanHangTaiQuay.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/banhangtaiquay/demo.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/brand/ModalEditBrand.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/brand/TableThuongHieu.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/brand/TimKiemBrand.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/category/ModalEditCategory.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/category/TableDanhMuc.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/category/TimKiemCategory.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/chatlieuvai/TableChatLieuVai.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/degiay/TableDeGiay.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/giamgia/ModalEdit3.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/giamgia/ModalThemMoiVoucher.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/giamgia/TableVoucher.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/khachhang/ModalEditKhachHang.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/khachhang/ModalThemMoiKhachHang.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/khachhang/TableKhachHang.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/kichthuoc/TableKichThuoc.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/mausac/TableMauSac.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/nhanvien/ModalEditNhanVien.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/nhanvien/ModalThemMoiNhanVien.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/nhanvien/TableNhanVien.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/sanpham/ModalEditSanPham.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/sanpham/ModalThemMoiSanPham.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/sanpham/TableSanPham.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/spct/Drawer.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/spct/DrawerView.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/spct/ModalEdit.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/spct/TableSanPhamChiTiet.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/product/spct/firebaseConfig.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/sidebar/Logo.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/sidebar/MenuList.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/component/sidebar/ToggleThemeButton.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/pages/Admin.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/pages/banhang/BanHang.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/pages/giamgia/DotGiamGia.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/pages/giamgia/GiamGia.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/pages/product/ChatLieu.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/pages/product/DanhMuc.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/pages/product/DeGiay.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/pages/product/KichThuoc.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/pages/product/MauSac.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/pages/product/SanPham.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/pages/product/SanPhamChiTiet.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/pages/product/ThuongHieu.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/pages/taikhoan/KhachHang.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/pages/taikhoan/NhanVien.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/pages/thongke/BieuDoDuong.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/pages/thongke/BieuDoTron.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/pages/thongke/ThongKe.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/pages/thongke/TongQuan.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/admin/pages/thongke/exportToExcelWithMultipleSheets .jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/api/DanhMucService.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/api/KhachHang.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/api/KhachHangApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/api/KichThuocApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/api/MauSacApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/api/NhanVienApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/api/SaleCTApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/api/SanPhamApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/api/SanPhamChiTietAPI.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/api/axiosClient.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/3HST.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/carousel/carousel1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/carousel/carousel2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/carousel/carousel3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/carousel/carousel4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/carousel/carousel5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/carousel/carousel_footer.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/carousel/carousel_footer1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/carousel/carousel_footer2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/logo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/logo2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/logo3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/logo4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/logo5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/logo6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/logo7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/logo8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/logo9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/Adidas_Forum_Low_Core_Black(1).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/Adidas_Forum_Low_Core_Black(2).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/Adidas_Forum_Low_Core_Black(3).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/Adidas_Forum_Low_Core_Black.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/Adidas_Gazelle_Indoor_Red_White(1).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/Adidas_Gazelle_Indoor_Red_White(2).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/Adidas_Gazelle_Indoor_Red_White(3).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/Adidas_Gazelle_Indoor_Red_White.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/Adidas_Samba_OG_White_Halo_Blue(1).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/Adidas_Samba_OG_White_Halo_Blue(2).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/Adidas_Samba_OG_White_Halo_Blue(3).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/Adidas_Samba_OG_White_Halo_Blue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/Nike_Air_Force_1_07_Triple_White(1).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/Nike_Air_Force_1_07_Triple_White(2).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/Nike_Air_Force_1_07_Triple_White(3).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/Nike_Air_Force_1_07_Triple_White.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/Nike_Air_Jordan_1_Retro_Low_Golf_Travis_Scott(1).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/Nike_Air_Jordan_1_Retro_Low_Golf_Travis_Scott(2).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/Nike_Air_Jordan_1_Retro_Low_Golf_Travis_Scott(3).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/Nike_Air_Jordan_1_Retro_Low_Golf_Travis_Scott.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/Nike_Dunk_Low_Black White(1).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/Nike_Dunk_Low_Black White(2).jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/Nike_Dunk_Low_Black White(3).jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/Nike_Dunk_Low_Black White(4).jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/Nike_Dunk_Low_Black White.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/product/test.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/thuonghieu/logo-nike-1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/thuonghieu/logoAdidas.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/thuonghieu/logoNewBalance.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/images/thuonghieu/puma-logo-3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/react.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/style/cssAddPlusFlash.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/style/cssEndDateDiscount.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/style/cssFilterProduct.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/assets/style/cssGoiYSearch.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/auth/ForgotPassword.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/auth/ForgotPasswordAdmin.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/auth/Login.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/auth/LoginAdmin.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/auth/LoginSuccess.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/auth/Register.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/auth/ResetPassword.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/component/card/CardItem.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/component/carousel/HomeCarousel.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/component/carousel/SPKhuyenMaiCarousel.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/component/cart/CardItemDrawer.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/component/cart/CartDrawer.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/component/cart/useCartStore.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/component/footer/HomeFooter.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/component/gioithieu/GioiThieu.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/component/navigation/Navigation.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/component/pages/HomePage.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/component/product/FilterProduct.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/component/product/ProductDetail.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/component/product/TrangChu.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/component/product/filterPage/filterSidebar.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/component/profile/AccountInfo.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/component/shopon/BillHistoryPage.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/component/shopon/FailedPay.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/component/shopon/HandlePayment.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/component/shopon/InvoiceLookup.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/component/shopon/OrderConfirmation.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/component/shopon/PreCheckout.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/component/title/TitleSanPham.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/customer/data/fake_product.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/main.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/routers/AdminRouters.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/routers/AuthRouter.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/routers/CustomerRouters.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/routers/ForbiddenPage.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/src/util/cart-empty-img.8b677cb3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/tailwind.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE_v1/vite.config.js" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="3ALrqYw64sUZ1mZeHm9KJR7RIjU" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "C:/Users/NTS/Desktop/cnpm/BE_shoes",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="BeshoesApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="BE_shoes" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.be_shoes.BeshoesApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.23774.435" />
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-IU-251.23774.435" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f14a3990-35ca-43c9-9905-285c9a8bff6b" name="Changes" comment="" />
+      <created>1772382883120</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1772382883120</updated>
+      <workItem from="1772382884415" duration="1026000" />
+    </task>
+    <task id="LOCAL-00001" summary="init prj">
+      <option name="closed" value="true" />
+      <created>1772383222257</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1772383222257</updated>
+    </task>
+    <task id="LOCAL-00002" summary="init prj">
+      <option name="closed" value="true" />
+      <created>1772383287984</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1772383287984</updated>
+    </task>
+    <task id="LOCAL-00003" summary="init prj">
+      <option name="closed" value="true" />
+      <created>1772383613678</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1772383613678</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init prj" />
+    <option name="LAST_COMMIT_MESSAGE" value="init prj" />
+  </component>
+</project>

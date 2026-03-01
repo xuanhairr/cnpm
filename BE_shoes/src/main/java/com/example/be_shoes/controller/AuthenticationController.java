@@ -1,0 +1,100 @@
+package com.example.be_shoes.controller;
+
+import com.example.be_shoes.config.jwtConfig.JwtProvider;
+import com.example.be_shoes.dto.Request.ChangePasswordRequest;
+import com.example.be_shoes.dto.Request.EmailRequest;
+import com.example.be_shoes.dto.Request.SignInRequest;
+import com.example.be_shoes.dto.Request.SignupRequest;
+import com.example.be_shoes.dto.Response.ApiResponse;
+import com.example.be_shoes.dto.Response.SignInResponse;
+import com.example.be_shoes.service.IAuthService;
+import com.example.be_shoes.utils.LoginHelper;
+import jakarta.mail.MessagingException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+
+@RestController
+@RequestMapping("/api/v1/auth")
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+public class AuthenticationController {
+
+    IAuthService iAuthService;
+
+    LoginHelper loginHelper;
+    JwtProvider jwtProvider;
+
+    @PostMapping("/login")
+    public ResponseEntity<?> authenticateUser(@RequestBody SignInRequest signInRequest, HttpServletRequest request) {
+        return iAuthService.login(signInRequest, request);
+    }
+
+    @PostMapping("/admin/login")
+    public ResponseEntity<?> authenticateAdmin(@RequestBody SignInRequest signInRequest, HttpServletRequest request) {
+        return iAuthService.loginAdmin(signInRequest, request);
+    }
+
+    @PostMapping("/sign-up")
+    public ApiResponse<?> signUp(@RequestBody SignupRequest signupRequest) {
+        return iAuthService.registerAccount(signupRequest);
+    }
+
+    @PostMapping("/via-email")
+    public ApiResponse<?> viaEmailToResgister(@RequestBody EmailRequest emailRequest) {
+        return ApiResponse.builder()
+                .data(iAuthService.handleSendCodeToMail(emailRequest.getEmail()))
+                .message("Send code to maill successfulll")
+                .build();
+    }
+
+    @GetMapping("/oauth/google")
+    public void hanldeLoginWithGoogle(@RequestParam("code") String code,
+                                      @RequestParam("scope") String scope,
+                                      @RequestParam("authuser") String authUser,
+                                      @RequestParam("prompt") String prompt,
+                                      HttpServletResponse response) throws IOException {
+
+        SignInResponse signInResponse = loginHelper.processGrantCode(code);
+        if (signInResponse != null) {
+            String redirectUrl = "http://localhost:5173/auth/login-success?token=" + signInResponse.getAccessToken();
+            response.sendRedirect(redirectUrl);
+        } else {
+            String redirectUrl = "http://localhost:5173/auth/login-success";
+            response.sendRedirect(redirectUrl);
+        }
+    }
+
+    @GetMapping("/profile")
+    public ApiResponse<?> getProfile() {
+        return iAuthService.getProfile();
+    }
+
+    @GetMapping("/profile-admin")
+    public ApiResponse<?> getProfileAdmin() {
+        return iAuthService.getProfileAdmin();
+    }
+
+
+    @GetMapping("/forgot-password")
+    public ApiResponse<?> forgotPassword(@RequestParam String email) throws MessagingException {
+        return ApiResponse.builder()
+                .data(iAuthService.sendTokenForgotPassword(email))
+                .message("send token to reset password successfully")
+                .build();
+    }
+
+    @PostMapping("/forgot-password")
+    public ApiResponse<?> changePassword(@RequestBody ChangePasswordRequest changePasswrodRequest) {
+        return ApiResponse.builder()
+                .data(iAuthService.resetPassword(changePasswrodRequest))
+                .message("change password successfully")
+                .build();
+    }
+}

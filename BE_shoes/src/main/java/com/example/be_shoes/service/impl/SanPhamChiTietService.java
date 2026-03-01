@@ -1,0 +1,261 @@
+package com.example.be_shoes.service.impl;
+
+import com.example.be_shoes.dto.Request.SanPhamChiTietRequest;
+import com.example.be_shoes.dto.Response.SanPhamChiTietResponse;
+import com.example.be_shoes.entity.*;
+import com.example.be_shoes.exception.AppException;
+import com.example.be_shoes.exception.ErrorCode;
+import com.example.be_shoes.repository.*;
+import com.example.be_shoes.service.ISanPhamChiTietService;
+import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+@RequiredArgsConstructor
+@FieldDefaults(level = lombok.AccessLevel.PRIVATE, makeFinal = true)
+public class SanPhamChiTietService implements ISanPhamChiTietService {
+    SanPhamChiTietRepository sanPhamChiTietRepository;
+//    MauSacRepository mauSacRepository;
+//    KichThuocRepository kichThuocRepository;
+//    HinhAnhService hinhAnhService;
+    SanPhamRepository sanPhamRepository;
+//    Sale_ChiTietRepository sale_ChiTietRepository;
+
+    @Override
+    public List<SanPhamChiTietResponse> getAllBySanPhamId(Long id) {
+        return sanPhamChiTietRepository.getAllSPCTBySanPhamId(id).stream().map(SanPhamChiTietResponse::fromSanPhamChiTiet).toList();
+    }
+
+    @Override
+    public Page<SanPhamChiTietResponse> getAllPage(Pageable pageable) {
+        return sanPhamChiTietRepository.findAll(pageable).map(SanPhamChiTietResponse::fromSanPhamChiTiet);
+    }
+
+    @Override
+    public List<SanPhamChiTietResponse> getAllBanHang(Long idDanhMuc, Long idThuongHieu, Long idChatLieuVai, Long idChatLieuDe, Long idSanPham) {
+        return sanPhamChiTietRepository.getAllByFilterBan(idDanhMuc, idThuongHieu, idChatLieuVai, idChatLieuDe, idSanPham)
+                .stream().map(SanPhamChiTietResponse::fromSanPhamChiTiet).toList();
+    }
+
+    @Override
+    public Page<SanPhamChiTietResponse> getAllPageBySanPhamId(Long id, Pageable pageable) {
+        return sanPhamChiTietRepository.findSPCTBySanPhamId(id,pageable).map(SanPhamChiTietResponse::fromSanPhamChiTiet);
+    }
+
+    @Override
+    public Page<SanPhamChiTietResponse> getAllByFilter(Long idDanhMuc, Long idThuongHieu, Long idChatLieuVai, Long idChatLieuDe, Long idSanPham, Pageable pageable) {
+        return sanPhamChiTietRepository.getAllByFilter(idDanhMuc, idThuongHieu, idChatLieuVai, idChatLieuDe, idSanPham, pageable)
+                .map(SanPhamChiTietResponse::fromSanPhamChiTiet);
+    }
+
+
+    @Override
+    public List<SanPhamChiTietResponse> create(List<SanPhamChiTietRequest> sanPhamChiTietRequest) throws IOException {
+        List<SanPhamChiTietResponse> sanPhamChiTietResponses = new ArrayList<>();
+
+
+
+
+        for (SanPhamChiTietRequest sanPhamChiTietRequest1 : sanPhamChiTietRequest) {
+            if(sanPhamChiTietRequest1.getGiaBan()<0){
+                throw new AppException(ErrorCode.GIA_BAN_INVALID);
+            }
+            if(sanPhamChiTietRequest1.getSoLuong()<0){
+                throw new AppException(ErrorCode.SO_LUONG_INVALID);
+            }
+            MauSac mauSac = null;
+//                    mauSacRepository.findById(sanPhamChiTietRequest1.getId_mauSac()).orElseThrow(() -> new AppException(ErrorCode.MAUSAC_NOT_FOUND));
+            KichThuoc kichThuoc = null;
+//                    kichThuocRepository.findById(sanPhamChiTietRequest1.getId_kichThuoc()).orElseThrow(() -> new AppException(ErrorCode.KICHTHUOC_NOT_FOUND));
+            SanPham sanPham = sanPhamRepository.findById(sanPhamChiTietRequest1.getId_sanPham()).orElseThrow(()-> new AppException(ErrorCode.SANPHAM_NOT_FOUND));
+            SanPhamChiTiet sanPhamChiTietCheck = sanPhamChiTietRepository.findBySanPhamIdAndMauSacIdAndKichThuocId(sanPham.getId(),mauSac.getId(),kichThuoc.getId());
+            if (sanPhamChiTietCheck != null) {
+                sanPhamChiTietCheck.setSoLuong(sanPhamChiTietCheck.getSoLuong() + sanPhamChiTietRequest1.getSoLuong());
+                sanPhamChiTietCheck.setGiaBan(sanPhamChiTietRequest1.getGiaBan());
+                SaleCt saleCt = null;
+//                        sale_ChiTietRepository.findMostRecentByIdSanPhamCtAndIdSale(sanPhamChiTietCheck.getId());
+                if(saleCt != null){
+                    sanPhamChiTietCheck.setGiaBanSauKhiGiam(sanPhamChiTietRequest1.getGiaBan() - (sanPhamChiTietRequest1.getGiaBan() * saleCt.getSale().getGiaTriGiam() / 100));
+                }else {
+                    sanPhamChiTietCheck.setGiaBanSauKhiGiam(sanPhamChiTietRequest1.getGiaBan());
+                }
+
+                sanPhamChiTietCheck.setTrangThai(sanPhamChiTietRequest1.getTrangThai());
+                sanPhamChiTietCheck = sanPhamChiTietRepository.save(sanPhamChiTietCheck);
+                List<String> existingImages = null;
+//                        hinhAnhService.getAllByIdSanPhamCt(sanPhamChiTietCheck.getId())
+//                        .stream().map(HinhAnh::getUrl).collect(Collectors.toList());
+
+                // Ảnh mới từ request
+                List<String> newImages = sanPhamChiTietRequest1.getHinhAnh();
+
+                // Thêm các ảnh mới (nếu chưa tồn tại)
+                for (String src : newImages) {
+                    if (!existingImages.contains(src)) {
+//                        hinhAnhService.addHinhAnh(src, sanPhamChiTietCheck.getId(), sanPhamChiTietCheck);
+                    }
+                }
+
+                // Xóa các ảnh không còn trong request nhưng có trong database
+                for (String existingImage : existingImages) {
+                    if (!newImages.contains(existingImage)) {
+//                        hinhAnhService.deleteHinhAnhByUrl(existingImage);
+                    }
+                }
+                sanPhamChiTietResponses.add(SanPhamChiTietResponse.fromSanPhamChiTiet(sanPhamChiTietCheck));
+                continue;
+            }
+
+
+            SanPhamChiTiet sanPhamChiTiet = SanPhamChiTiet.builder()
+                    .soLuong(sanPhamChiTietRequest1.getSoLuong())
+                    .giaBan(sanPhamChiTietRequest1.getGiaBan())
+                    .giaBanSauKhiGiam(sanPhamChiTietRequest1.getGiaBan())
+                    .sanPham(sanPham)
+                    .kichThuoc(kichThuoc)
+                    .mauSac(mauSac)
+                    .maSanPham(sanPhamChiTietRequest1.getMaSanPham())
+                    .trangThai(sanPhamChiTietRequest1.getTrangThai())
+//                    .hinhAnhList(danhSachHinhAnh) // Gán danh sách hình ảnh
+                    .build();
+
+
+            sanPhamChiTiet = sanPhamChiTietRepository.save(sanPhamChiTiet);
+            for (String src: sanPhamChiTietRequest1.getHinhAnh()) {
+//                hinhAnhService.addHinhAnh(src,sanPhamChiTiet.getId(), sanPhamChiTiet);
+            }
+            sanPhamChiTietResponses.add(SanPhamChiTietResponse.fromSanPhamChiTiet(sanPhamChiTiet));
+        }
+        return sanPhamChiTietResponses;
+    }
+    @Override
+    public SanPhamChiTietResponse update(Long id, SanPhamChiTietRequest sanPhamChiTietRequest) {
+        SanPhamChiTiet sanPhamChiTiet = sanPhamChiTietRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.SANPHAM_NOT_FOUND));
+        if(sanPhamChiTietRequest.getGiaBan()<0){
+            throw new AppException(ErrorCode.GIA_BAN_INVALID);
+        }
+        if(sanPhamChiTietRequest.getSoLuong()<0){
+            throw new AppException(ErrorCode.SO_LUONG_INVALID);
+        }
+        MauSac mauSac = null;
+//                mauSacRepository.findById(sanPhamChiTietRequest.getId_mauSac()).orElseThrow(() -> new AppException(ErrorCode.MAUSAC_NOT_FOUND));
+        KichThuoc kichThuoc = null;
+//                kichThuocRepository.findById(sanPhamChiTietRequest.getId_kichThuoc()).orElseThrow(() -> new AppException(ErrorCode.KICHTHUOC_NOT_FOUND));
+        SanPham sanPham = sanPhamRepository.findById(sanPhamChiTietRequest.getId_sanPham()).orElseThrow(()-> new AppException(ErrorCode.SANPHAM_NOT_FOUND));
+        sanPhamChiTiet.setSoLuong(sanPhamChiTietRequest.getSoLuong());
+        sanPhamChiTiet.setGiaBan(sanPhamChiTietRequest.getGiaBan());
+
+        sanPhamChiTiet.setSanPham(sanPham);
+        sanPhamChiTiet.setKichThuoc(kichThuoc);
+        sanPhamChiTiet.setMauSac(mauSac);
+        sanPhamChiTiet.setTrangThai(sanPhamChiTietRequest.getTrangThai());
+
+        //check có đợt giảm giá khong
+        SaleCt saleCt =null;
+//                sale_ChiTietRepository.findMostRecentByIdSanPhamCtAndIdSale(sanPhamChiTiet.getId());
+        if(saleCt != null){
+            sanPhamChiTiet.setGiaBanSauKhiGiam(sanPhamChiTiet.getGiaBan() - (sanPhamChiTiet.getGiaBan() * saleCt.getSale().getGiaTriGiam() / 100));
+        }else {
+            sanPhamChiTiet.setGiaBanSauKhiGiam(sanPhamChiTiet.getGiaBan());
+        }
+        SanPhamChiTiet savedSanPhamChiTiet = sanPhamChiTietRepository.save(sanPhamChiTiet);
+
+        List<String> existingImages = null;
+//                hinhAnhService.getAllByIdSanPhamCt(sanPhamChiTiet.getId())
+//                .stream().map(HinhAnh::getUrl).collect(Collectors.toList());
+
+        // Ảnh mới từ request
+        List<String> newImages = sanPhamChiTietRequest.getHinhAnh();
+
+        // Nếu danh sách ảnh mới không null và không rỗng
+        if (newImages != null && !newImages.isEmpty()) {
+            // Thêm các ảnh mới (nếu chưa tồn tại)
+            for (String src : newImages) {
+                if (!existingImages.contains(src)) {
+//                    hinhAnhService.addHinhAnh(src, sanPhamChiTiet.getId(), sanPhamChiTiet);
+                }
+            }
+
+            // Xóa các ảnh không còn trong request nhưng có trong database
+            for (String existingImage : existingImages) {
+                if (!newImages.contains(existingImage)) {
+//                    hinhAnhService.deleteHinhAnhByUrl(existingImage);
+                }
+            }
+        }
+        return SanPhamChiTietResponse.fromSanPhamChiTiet(savedSanPhamChiTiet);
+    }
+
+    @Override
+    public SanPhamChiTietResponse getById(Long id) {
+        return sanPhamChiTietRepository.findById(id).map(SanPhamChiTietResponse::fromSanPhamChiTiet).orElseThrow();
+    }
+
+    @Override
+    public String delete(Long id) {
+
+        sanPhamChiTietRepository.deleteById(id);
+        return "deleted successfully";
+    }
+
+    @Override
+    public void updateSoLuongSanPhamChiTiet(Long id, Integer soLuong, String method) {
+        SanPhamChiTiet sanPhamChiTiet = sanPhamChiTietRepository.findById(id).orElseThrow();
+        if(method.equalsIgnoreCase("minus")){
+            sanPhamChiTiet.setSoLuong(sanPhamChiTiet.getSoLuong() - soLuong);
+        }else {
+            sanPhamChiTiet.setSoLuong(sanPhamChiTiet.getSoLuong() + soLuong);
+        }
+        sanPhamChiTietRepository.save(sanPhamChiTiet);
+    }
+
+    @Override
+    public SanPhamChiTietResponse updateStatus(Long idSanPhamChiTiet, int status) {
+        SanPhamChiTiet sanPhamChiTiet = sanPhamChiTietRepository.findById(idSanPhamChiTiet).orElseThrow(() -> new AppException(ErrorCode.SANPHAM_NOT_FOUND));
+        sanPhamChiTiet.setTrangThai(status);
+        return SanPhamChiTietResponse.fromSanPhamChiTiet(sanPhamChiTietRepository.save(sanPhamChiTiet));
+    }
+
+    @Override
+    public SanPhamChiTietResponse getSPCTByMauSacAndKichThuoc(Long idSanPham,Long idMauSac, Long idKichThuoc) {
+        SanPhamChiTiet sanPhamChiTiet = sanPhamChiTietRepository.findBySanPhamIdAndMauSacIdAndKichThuocId(idSanPham,idMauSac,idKichThuoc);
+        if (sanPhamChiTiet == null) {
+            // Ném ngoại lệ hoặc trả về giá trị mặc định
+            throw new EntityNotFoundException("Không tìm thấy sản phẩm chi tiết với ID sản phẩm: " + idSanPham +
+                    ", ID màu sắc: " + idMauSac +
+                    ", ID kích thước: " + idKichThuoc);
+        }
+        return SanPhamChiTietResponse.fromSanPhamChiTiet(sanPhamChiTiet);
+    }
+
+    @Override
+    public Double getSanPhamChiTietByGiaTienMax() {
+        return sanPhamChiTietRepository.getSanPhamChiTietByGiaTienMax();
+    }
+
+    @Override
+    public Page<SanPhamChiTietResponse> getSanPhamChiTietBySoLuong(int soLuong, Pageable pageable) {
+        return sanPhamChiTietRepository.getSanPhamChiTietBySoLuong(soLuong,pageable).map(SanPhamChiTietResponse::fromSanPhamChiTiet);
+    }
+
+    @Override
+    public int countSanPhamHetHang() {
+        return sanPhamChiTietRepository.countSanPhamHetHang();
+    }
+
+
+//    @Override
+//    public List<SanPhamChiTietResponse> getAllBanHang(Long idDanhMuc, Long idThuongHieu, Long idChatLieuVai, Long idChatLieuDe, Long idSanPham) {
+//        return sanPhamChiTietRepository.getAllByFilterBan(idDanhMuc, idThuongHieu, idChatLieuVai, idChatLieuDe, idSanPham)
+//                .stream().map(SanPhamChiTietResponse::fromSanPhamChiTiet).toList();
+//    }
+}
