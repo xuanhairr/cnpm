@@ -61,7 +61,7 @@ public class NhanVienController {
         apiResponse.setMessage(nhanVienService.deleteNhanVien(id));
         return apiResponse;
     }
-    
+
     @PutMapping("/{id}")
     ApiResponse<NhanVienResponse> updateNhanVien(@PathVariable Long id, @RequestBody @Valid NhanVienRequest nhanVienRequest) {
         ApiResponse<NhanVienResponse> apiResponse = new ApiResponse<>();
