@@ -59,45 +59,28 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
-
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        http.cors().disable();
         http
-                .authorizeHttpRequests((requests) -> {
-                            try {
-                                requests
-                                        .requestMatchers(new AntPathRequestMatcher("/public/**"),
-                                                new AntPathRequestMatcher("/**"),
-                                                new AntPathRequestMatcher("/error"),
-                                                new AntPathRequestMatcher("/api/v1/auth/**"),
-                                                new AntPathRequestMatcher("/swagger-ui/**"),
-                                                new AntPathRequestMatcher("/v3/api-docs/**")
-
-
-
-                                        )
-                                        .permitAll()
-//                                        .requestMatchers("/v1/api/users/**")
-//                                        .authenticated()
-                                        .anyRequest()
-                                        .authenticated()
-                                        .and()
-                                        .exceptionHandling()
-                                        .authenticationEntryPoint(unauthorized)
-                                        .accessDeniedHandler(forbidden)
-                                        .and()
-                                        .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-                            } catch (Exception e) {
-                                throw new RuntimeException(e);
-                            }
-                        }
+                .csrf(csrf -> csrf.disable())
+                .cors(cors -> cors.disable())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(
+                                "/public/**",
+                                "/api/v1/auth/**",
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**",
+                                "/error"
+                        ).permitAll()
+                        .anyRequest().authenticated()
                 )
-                .httpBasic();
+                .exceptionHandling(ex -> ex
+                        .authenticationEntryPoint(unauthorized)
+                        .accessDeniedHandler(forbidden)
+                )
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
-
-
 
 }
