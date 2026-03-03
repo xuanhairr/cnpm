@@ -1,0 +1,130 @@
+package com.example.be_shoes.service.impl;
+
+import com.example.be_shoes.dto.Request.GioHangChiTietRequest;
+import com.example.be_shoes.dto.Response.GioHangChiTietResponse;
+import com.example.be_shoes.entity.GioHang;
+import com.example.be_shoes.entity.GioHangChiTiet;
+import com.example.be_shoes.entity.SanPhamChiTiet;
+import com.example.be_shoes.exception.AppException;
+import com.example.be_shoes.exception.ErrorCode;
+import com.example.be_shoes.mapper.GioHangChiTietMapper;
+import com.example.be_shoes.repository.GioHangChiTietRepository;
+import com.example.be_shoes.repository.GioHangRepository;
+import com.example.be_shoes.repository.SanPhamChiTietRepository;
+import com.example.be_shoes.service.IGioHangChiTietService;
+import jakarta.transaction.Transactional;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+public class GioHangChiTietService implements IGioHangChiTietService {
+    GioHangChiTietRepository gioHangChiTietRepository;
+    SanPhamChiTietRepository sanPhamChiTietRepository;
+    GioHangRepository gioHangRepository;
+    GioHangChiTietMapper gioHangChiTietMapper;
+
+    @Override
+    public List<GioHangChiTietResponse> findByIdGioHang(Long idGioHang) {
+        return gioHangChiTietMapper.toListGioHangCtResponse(gioHangChiTietRepository.findByGioHang_IdAndTrangThai(idGioHang, 1));
+    }
+
+    @Override
+    @Transactional
+    public GioHangChiTietResponse themGioHangChiTiet(GioHangChiTietRequest gioHangChiTietRequest) {
+        GioHang gioHang = gioHangRepository.findById(gioHangChiTietRequest.getIdGioHang()).orElseThrow(() -> new AppException(ErrorCode.GIO_HANG_NOT_FOUND));
+        SanPhamChiTiet sanPhamChiTiet = sanPhamChiTietRepository.findById(gioHangChiTietRequest.getIdSanPhamChiTiet()).orElseThrow(() -> new AppException(ErrorCode.SANPHAM_NOT_FOUND));
+        GioHangChiTiet existGioHangChiTiet = gioHangChiTietRepository.findByIdGiohangAndIdSanPhamChiTiet(gioHangChiTietRequest.getIdGioHang(), gioHangChiTietRequest.getIdSanPhamChiTiet());
+        int soLuongConLai = sanPhamChiTiet.getSoLuong();
+        if (existGioHangChiTiet != null) {
+            if (existGioHangChiTiet.getSoLuong() + gioHangChiTietRequest.getSoLuong() > soLuongConLai) {
+                throw new AppException(ErrorCode.SO_LUONG_SAN_PHAM_KHONG_DU);
+            }
+            existGioHangChiTiet.setSoLuong(existGioHangChiTiet.getSoLuong() + gioHangChiTietRequest.getSoLuong());
+            existGioHangChiTiet.setGiaTien(gioHangChiTietRequest.getGiaTien());
+            existGioHangChiTiet.setThoiGianGiamGia(gioHangChiTietRequest.getThoiGianGiamGia());
+            return gioHangChiTietMapper.toGioHangChiTietResponse(gioHangChiTietRepository.save(existGioHangChiTiet));
+        }
+        GioHangChiTiet gioHangChiTiet = GioHangChiTiet.builder()
+                .gioHang(gioHang)
+                .soLuong(gioHangChiTietRequest.getSoLuong())
+                .trangThai(1)
+                .sanPhamChiTiet(sanPhamChiTiet)
+                .giaTien(gioHangChiTietRequest.getGiaTien())
+                .thoiGianGiamGia(gioHangChiTietRequest.getThoiGianGiamGia())
+                .build();
+        return gioHangChiTietMapper.toGioHangChiTietResponse(gioHangChiTietRepository.save(gioHangChiTiet));
+
+    }
+
+
+
+    @Override
+    @Transactional
+    public int xoaKhoiGioHang(Long idGioHangChiTiet) {
+        gioHangChiTietRepository.findById(idGioHangChiTiet).orElseThrow(() -> new AppException(ErrorCode.GIO_HANG_CHI_TIET_NOT_FOUND));
+        gioHangChiTietRepository.deleteById(idGioHangChiTiet);
+        return 1;
+    }
+
+    @Override
+    @Transactional
+    public int xoaKhoiGioHangBySanPhamChiTiet(Long idSanPhamChiTiet, Long idGioHang) {
+        return  gioHangChiTietRepository.deleteByIdSanPhamChiTiet(idSanPhamChiTiet, idGioHang);
+    }
+
+    @Override
+    public void updateGioHangChiTiet(Long idSanPhamChiTiet, Long idGioHang, int soLuong) {
+        // Truy vấn đối tượng GioHangChiTiet từ repository
+        GioHangChiTiet gioHangChiTiet = gioHangChiTietRepository.findByIdGiohangAndIdSanPhamChiTiet(idGioHang, idSanPhamChiTiet);
+
+        // Kiểm tra nếu gioHangChiTiet là null
+        if (gioHangChiTiet == null) {
+            throw new AppException(ErrorCode.GIO_HANG_CHI_TIET_NOT_FOUND); // Ném lỗi nếu không tìm thấy
+        }
+
+        // Kiểm tra số lượng hiện tại trước khi tiếp tục
+        if (gioHangChiTiet.getSoLuong() < 1) {
+            return; // Nếu số lượng ít hơn 1, không thực hiện cập nhật
+        }
+
+        // Cập nhật số lượng sản phẩm
+        gioHangChiTiet.setSoLuong(gioHangChiTiet.getSoLuong() + soLuong);
+
+        // Lưu lại đối tượng GioHangChiTiet đã cập nhật
+        gioHangChiTietRepository.save(gioHangChiTiet);
+    }
+
+    @Override
+    public void xoaHetGioHang(Long idGioHang) {
+        gioHangChiTietRepository.deleteByGioHang_Id(idGioHang);
+    }
+
+    @Scheduled(fixedRate = 10000)
+    @Transactional
+    public void updateSanPhamTrongGio(){
+        List<GioHangChiTiet> sanPhamNgungBan = gioHangChiTietRepository.findBySanPhamChiTietTrangThai(0);
+        for (GioHangChiTiet gioHangChiTiet : sanPhamNgungBan) {
+            gioHangChiTiet.setTrangThai(0);
+            gioHangChiTietRepository.save(gioHangChiTiet);
+
+        }
+        List<GioHangChiTiet> sanPhamDangBan = gioHangChiTietRepository.findBySanPhamChiTietTrangThai(1);
+        for (GioHangChiTiet gioHangChiTiet : sanPhamDangBan) {
+            gioHangChiTiet.setTrangThai(1);
+            gioHangChiTietRepository.save(gioHangChiTiet);
+        }
+    }
+
+    public List<GioHangChiTietResponse> findByIdGioHangAll(Long idGioHang) {
+        return gioHangChiTietMapper.toListGioHangCtResponse(gioHangChiTietRepository.findByGioHang_Id(idGioHang));
+    }
+
+
+}
